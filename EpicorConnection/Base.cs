@@ -36,6 +36,8 @@ namespace EpicorConnection
             
             cred.userName = user;
             cred.password = pass;
+
+            setCompany(getcompany);
         }
 
         public Base(string user, string pass)
@@ -55,7 +57,7 @@ namespace EpicorConnection
             cred.password = "!15LiveTI";
         }
 
-        public void setCompany(string currentCompany)
+        private void setCompany(string currentCompany)
         {
             string appServerUrl = string.Empty;
 

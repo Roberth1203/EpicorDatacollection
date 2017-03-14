@@ -15,3 +15,4 @@ C:\Users\analista_ifc\Documents\Visual Studio 2015\Projects\EpicorDataCollection
 C:\Users\analista_ifc\Documents\Visual Studio 2015\Projects\EpicorDataCollection\EpicorConnection\bin\Debug\es-MX\Ice.Lib.Deployment.resources.dll
 C:\Users\analista_ifc\Documents\Visual Studio 2015\Projects\EpicorDataCollection\EpicorConnection\obj\Debug\EpicorConnection.dll
 C:\Users\analista_ifc\Documents\Visual Studio 2015\Projects\EpicorDataCollection\EpicorConnection\obj\Debug\EpicorConnection.pdb
+C:\Users\analista_ifc\Documents\Visual Studio 2015\Projects\EpicorDataCollection\EpicorConnection\obj\Debug\EpicorConnection.csprojResolveAssemblyReference.cache

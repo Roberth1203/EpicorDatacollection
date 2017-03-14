@@ -29,17 +29,16 @@ namespace EpicorDataCollection
             uName = inputUser.Text;
             uPass = inputPass.Text;
             rutaConfig = @"C:\Epicor\ERP10.0ClientTest\Client\config\Epicor10.sysconfig";
-            //Base pattern = new Base(uName, uPass);
-
-
+            
             if (!isEmpty())
             {
                 try
                 {
-                    Session epiSession = new Session(uName, uPass, Session.LicenseType.DataCollection,rutaConfig);
+                    Session epiSession = new Session(uName, uPass, Session.LicenseType.DataCollection,rutaConfig); //Consumo una licencia de tipo DataCollection
 
                     if (epiSession != null)
                     {
+                        Base pattern = new Base(uName, uPass, "TT"); //Hago el cambio de compañia según sea necesario
                         pantallaPrincipal screen = new pantallaPrincipal();
                         this.Hide();
                         screen.Show();
