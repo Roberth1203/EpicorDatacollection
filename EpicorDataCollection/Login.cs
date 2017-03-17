@@ -17,7 +17,7 @@ namespace EpicorDataCollection
 {
     public partial class Login : Form
     {
-        string uName, uPass, rutaConfig;
+        public string uName, uPass, rutaConfig;
 
         public Login()
         {

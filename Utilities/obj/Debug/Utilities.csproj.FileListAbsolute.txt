@@ -1,0 +1,6 @@
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\Utilities\bin\Debug\Utilities.dll
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\Utilities\bin\Debug\Utilities.pdb
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\Utilities\obj\Debug\Utilities.csprojResolveAssemblyReference.cache
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\Utilities\obj\Debug\Utilities.dll
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\Utilities\obj\Debug\Utilities.pdb
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\Utilities\bin\Debug\mysql.data.dll

@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.ribbonClientPanel1 = new DevComponents.DotNetBar.Ribbon.RibbonClientPanel();
-            this.inputUser = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.inputPass = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.btnLogOn = new DevComponents.DotNetBar.ButtonX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.inputPass = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.inputUser = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.ribbonClientPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,32 +66,30 @@
             this.ribbonClientPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ribbonClientPanel1.TabIndex = 0;
             // 
-            // inputUser
+            // btnLogOn
+            // 
+            this.btnLogOn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnLogOn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnLogOn.Location = new System.Drawing.Point(98, 131);
+            this.btnLogOn.Name = "btnLogOn";
+            this.btnLogOn.Size = new System.Drawing.Size(75, 23);
+            this.btnLogOn.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnLogOn.TabIndex = 4;
+            this.btnLogOn.Text = "Aceptar";
+            this.btnLogOn.Click += new System.EventHandler(this.btnLogOn_Click);
+            // 
+            // labelX2
+            // 
+            this.labelX2.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            // 
-            this.inputUser.Border.Class = "TextBoxBorder";
-            this.inputUser.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.inputUser.Location = new System.Drawing.Point(126, 53);
-            this.inputUser.Name = "inputUser";
-            this.inputUser.PreventEnterBeep = true;
-            this.inputUser.Size = new System.Drawing.Size(127, 20);
-            this.inputUser.TabIndex = 0;
-            // 
-            // inputPass
-            // 
-            // 
-            // 
-            // 
-            this.inputPass.Border.Class = "TextBoxBorder";
-            this.inputPass.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.inputPass.Location = new System.Drawing.Point(126, 89);
-            this.inputPass.Name = "inputPass";
-            this.inputPass.PasswordChar = '*';
-            this.inputPass.PreventEnterBeep = true;
-            this.inputPass.Size = new System.Drawing.Size(127, 20);
-            this.inputPass.TabIndex = 1;
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(53, 89);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(67, 23);
+            this.labelX2.TabIndex = 3;
+            this.labelX2.Text = "Contraseña:";
             // 
             // labelX1
             // 
@@ -107,40 +105,43 @@
             this.labelX1.TabIndex = 2;
             this.labelX1.Text = "Usuario:";
             // 
-            // labelX2
-            // 
-            this.labelX2.BackColor = System.Drawing.Color.Transparent;
+            // inputPass
             // 
             // 
             // 
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(53, 89);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(67, 23);
-            this.labelX2.TabIndex = 3;
-            this.labelX2.Text = "Contraseña:";
             // 
-            // btnLogOn
+            this.inputPass.Border.Class = "TextBoxBorder";
+            this.inputPass.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.inputPass.Location = new System.Drawing.Point(126, 89);
+            this.inputPass.Name = "inputPass";
+            this.inputPass.PasswordChar = '*';
+            this.inputPass.PreventEnterBeep = true;
+            this.inputPass.Size = new System.Drawing.Size(127, 20);
+            this.inputPass.TabIndex = 1;
             // 
-            this.btnLogOn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnLogOn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnLogOn.Location = new System.Drawing.Point(98, 131);
-            this.btnLogOn.Name = "btnLogOn";
-            this.btnLogOn.Size = new System.Drawing.Size(75, 23);
-            this.btnLogOn.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnLogOn.TabIndex = 4;
-            this.btnLogOn.Text = "Aceptar";
-            this.btnLogOn.Click += new System.EventHandler(this.btnLogOn_Click);
+            // inputUser
             // 
-            // Form1
+            // 
+            // 
+            // 
+            this.inputUser.Border.Class = "TextBoxBorder";
+            this.inputUser.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.inputUser.Location = new System.Drawing.Point(126, 53);
+            this.inputUser.Name = "inputUser";
+            this.inputUser.PreventEnterBeep = true;
+            this.inputUser.Size = new System.Drawing.Size(127, 20);
+            this.inputUser.TabIndex = 0;
+            // 
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 174);
             this.Controls.Add(this.ribbonClientPanel1);
             this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Inicio de Sesión";
             this.ribbonClientPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -152,8 +153,8 @@
         private DevComponents.DotNetBar.ButtonX btnLogOn;
         private DevComponents.DotNetBar.LabelX labelX2;
         private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.Controls.TextBoxX inputPass;
-        private DevComponents.DotNetBar.Controls.TextBoxX inputUser;
+        public DevComponents.DotNetBar.Controls.TextBoxX inputPass;
+        public DevComponents.DotNetBar.Controls.TextBoxX inputUser;
     }
 }
 

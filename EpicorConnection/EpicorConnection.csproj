@@ -45,8 +45,14 @@
     <Reference Include="Erp.Lib.GlobalStrings">
       <HintPath>..\..\Librerias Epicor\Erp.Lib.GlobalStrings.dll</HintPath>
     </Reference>
+    <Reference Include="Ice.Adapters.UD01">
+      <HintPath>..\..\..\..\..\..\..\Epicor\ERP10.0ClientTest\Client\Ice.Adapters.UD01.dll</HintPath>
+    </Reference>
     <Reference Include="Ice.Adapters.UserFile">
       <HintPath>..\..\Librerias Epicor\Ice.Adapters.UserFile.dll</HintPath>
+    </Reference>
+    <Reference Include="Ice.Contracts.BO.UD01">
+      <HintPath>..\..\..\..\..\..\..\Epicor\ERP10.0ClientTest\Client\Ice.Contracts.BO.UD01.dll</HintPath>
     </Reference>
     <Reference Include="Ice.Contracts.BO.UserFile">
       <HintPath>..\..\Librerias Epicor\Ice.Contracts.BO.UserFile.dll</HintPath>
