@@ -85,9 +85,9 @@ namespace Utilities
             {
                 MySqlConnection MySQLconn = new MySqlConnection(sql);
                 MySqlCommand cmd = MySQLconn.CreateCommand();
-                cmd.CommandText = "SELECT idProyecto FROM tb_seguimiento";
+                //cmd.CommandText = "SELECT idProyecto FROM tb_seguimiento";
                 MySQLconn.Open();
-                cmd.ExecuteNonQuery();
+                //cmd.ExecuteNonQuery();
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
                 adapter.SelectCommand = new MySqlCommand(query,MySQLconn);

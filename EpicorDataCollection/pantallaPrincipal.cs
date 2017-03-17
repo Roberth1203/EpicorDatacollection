@@ -47,10 +47,7 @@ namespace EpicorDataCollection
             mysql = new MySQL_Utilities();
             dt = mysql.MySQLData(query);
             dataGridView1.DataSource = dt;
-
-            getDataGridCells();
-            //sql = new utilities();
-            //DataTable dt = sql.SQLdata("SELECT TOP 10 * FROM Ice.UD01",null,dataValues);
+            dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -70,7 +67,9 @@ namespace EpicorDataCollection
         private void getDataGridCells()
         {
             foreach (DataGridViewRow fila in dataGridView1.Rows)
-                MessageBox.Show("Id del Proyecto: " + fila.Cells[0].Value.ToString(),"MySQL Information",MessageBoxButtons.OK);
+                MessageBox.Show("Id del Proyecto: " + fila.Cells[0].Value,"MySQL Information",MessageBoxButtons.OK);
+
+            MessageBox.Show("Fila1 \n IdProyecto: " + dataGridView1.Rows[1].Cells[0].Value + " Fecha: " + dataGridView1.Rows[1].Cells[1].Value);
         }
     }
 }
