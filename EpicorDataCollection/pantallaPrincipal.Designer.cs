@@ -102,7 +102,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvEpicor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEpicor.Location = new System.Drawing.Point(3, 32);
+            this.dgvEpicor.Location = new System.Drawing.Point(-3, 35);
             this.dgvEpicor.Name = "dgvEpicor";
             this.dgvEpicor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEpicor.Size = new System.Drawing.Size(475, 281);

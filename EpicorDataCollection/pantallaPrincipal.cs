@@ -37,11 +37,12 @@ namespace EpicorDataCollection
         {
             Base obj = new Base("rarroyo", "vorkelball", "TT");
             
-            obj.updateUD39();
+            //obj.updateUD39();
         }
 
         private void btnSQL_Click(object sender, EventArgs e)
         {
+            int indice =0;
             mysql = new MySQL_Utilities();
             DataTable dt = new DataTable();
             string query = ConfigurationManager.AppSettings["getProyects"].ToString();
@@ -49,7 +50,13 @@ namespace EpicorDataCollection
             dataGridView1.DataSource = dt;
             dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
-            getRowsPerProject();
+            //foreach (DataGridViewRow fila in dataGridView1.Rows)
+            //{
+                getRecordsPerProject(dataGridView1.Rows[1].Cells[0].Value.ToString(), dataGridView1.Rows[1].Cells[1].Value.ToString(), dataGridView1.Rows[1].Cells[2].Value.ToString(), dataGridView1.Rows[1].Cells[3].Value.ToString(), dataGridView1.Rows[1].Cells[4].Value.ToString());
+
+                //dataGridView1.Rows[indice].DefaultCellStyle.BackColor = Color.LightGreen;
+                //indice++;
+            //}
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -70,25 +77,21 @@ namespace EpicorDataCollection
             MessageBox.Show("Fila1 \n IdProyecto: " + dataGridView1.Rows[1].Cells[0].Value + " Fecha: " + dataGridView1.Rows[1].Cells[1].Value);
         }
 
-        private void getRowsPerProject()
+        private void getRecordsPerProject(string idProyecto, string fechaInicio, string fechaPreparacion, string fechaSurcado, string fechaEncamado)
         {
             sql = new utilities();
             DataTable dtEpicor = new DataTable();
-            string selectProjects = ConfigurationManager.AppSettings["getEpicorProjects"].ToString();
-            string project;
+            string consulta = ConfigurationManager.AppSettings["getEpicorProjects"].ToString();
+            string project = idProyecto;
             int index = 0;
 
-            foreach (DataGridViewRow fila in dataGridView1.Rows)
-            {
-                dataGridView1.Rows[index].Selected = true;
-                project = dataGridView1.Rows[index].Cells[0].Value.ToString();
-                dtEpicor = sql.SQLGetData(selectProjects, project);
-                dgvEpicor.DataSource = dtEpicor;
-                MessageBox.Show("Registros Obtenidos","Tarea Correcta",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
-                dataGridView1.Rows[index].DefaultCellStyle.BackColor = Color.LightGreen;
-                
-                index++;
-            }
+            dtEpicor = sql.SQLGetData(consulta, project);
+            dgvEpicor.DataSource = dtEpicor;
+            
+            Base obj = new Base("rarroyo", "vorkelball", "TT");
+            obj.updateUD39(dgvEpicor.Rows[0].Cells[1].Value.ToString(), dgvEpicor.Rows[0].Cells[2].Value.ToString(), dgvEpicor.Rows[0].Cells[3].Value.ToString(), dgvEpicor.Rows[0].Cells[4].Value.ToString(), dgvEpicor.Rows[0].Cells[5].Value.ToString(),fechaInicio,fechaPreparacion,fechaSurcado,fechaEncamado);
+            
+            MessageBox.Show("Datos Modificados");
         }
     }
 }

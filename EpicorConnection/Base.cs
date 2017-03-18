@@ -189,7 +189,7 @@ namespace EpicorConnection
             }
         }
 
-        public void updateUD39()
+        public void updateUD39(string k1, string k2, string k3, string k4, string k5,string fechaInicio,string fechaPreparacion, string fechaSurcado, string fechaEncamado)
         {
             bool res = true;
             bool existe = true;
@@ -208,7 +208,7 @@ namespace EpicorConnection
 
                 try
                 {
-                    dset = BObject.GetByID("", "", "", "", "");
+                    dset = BObject.GetByID(k1, k2, k3, k4, k5);
                     
                 }
                 catch (Exception ex)
@@ -220,14 +220,17 @@ namespace EpicorConnection
                     BObject.GetaNewUD39(dset);
 
                     dset.Tables["UD39"].Rows[0]["Company"] = getcompany;
-                    dset.Tables["UD39"].Rows[0]["key1"] = "test2";
-                    dset.Tables["UD39"].Rows[0]["key2"] = "";
-                    dset.Tables["UD39"].Rows[0]["key3"] = "";
-                    dset.Tables["UD39"].Rows[0]["key4"] = "";
-                    dset.Tables["UD39"].Rows[0]["key5"] = "";
+                    dset.Tables["UD39"].Rows[0]["key1"] = k1;
+                    dset.Tables["UD39"].Rows[0]["key2"] = k2;
+                    dset.Tables["UD39"].Rows[0]["key3"] = k3;
+                    dset.Tables["UD39"].Rows[0]["key4"] = k4;
+                    dset.Tables["UD39"].Rows[0]["key5"] = k5;
                 }
 
-                dset.Tables["UD39"].Rows[0]["character05"] = "2017-03-17 04:26:30";
+                dset.Tables["UD39"].Rows[0]["Date04"] = fechaInicio;
+                dset.Tables["UD39"].Rows[0]["Date05"] = fechaPreparacion;
+                dset.Tables["UD39"].Rows[0]["Date06"] = fechaSurcado;
+                dset.Tables["UD39"].Rows[0]["Date07"] = fechaEncamado;
 
                 BObject.Update(dset);
             }
