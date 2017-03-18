@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.Windows.Forms;
 using Epicor.ServiceModel.StandardBindings;
 using Ice.BO;
 using Ice.Lib;
@@ -11,6 +12,7 @@ using Ice.Proxy.BO;
 using System.ServiceModel.Channels;
 using Ice.Core;
 using static Ice.BO.UD01DataSet;
+using static Ice.BO.UD39DataSet;
 
 
 namespace EpicorConnection
@@ -155,7 +157,81 @@ namespace EpicorConnection
             }
         }
 
-        
+        public void InsertUD39()
+        {
+            bool Res = true;
+            string appServerUrl = string.Empty;
+
+            EnvironmentInformation.ConfigurationFileName = fileSys;
+            appServerUrl = AppSettingsHandler.AppServerUrl;
+            CustomBinding wcfBinding = new CustomBinding();
+            wcfBinding = NetTcp.UsernameWindowsChannel();
+            Uri CustSvcUri = new Uri(string.Format("{0}/Ice/BO/{1}.svc", appServerUrl, "UD39"));
+            using (UD39Impl BObject = new UD39Impl(wcfBinding, CustSvcUri))
+            {
+                    //Obtengo credenciales para realizar la operación
+                    BObject.ClientCredentials.UserName.UserName = cred.userName;
+                    BObject.ClientCredentials.UserName.Password = cred.password;
+                    UD39DataSet ds = new UD39DataSet();
+                    BObject.GetaNewUD39(ds);
+
+                    //Cargo datos a actualizar en el DataSet
+                    ds.Tables["UD39"].Rows[0]["Company"] = getcompany;
+                    ds.Tables["UD39"].Rows[0]["key1"] = "test3";
+                    ds.Tables["UD39"].Rows[0]["key2"] = "";
+                    ds.Tables["UD39"].Rows[0]["key3"] = "";
+                    ds.Tables["UD39"].Rows[0]["key4"] = "";
+                    ds.Tables["UD39"].Rows[0]["key5"] = "";
+                    ds.Tables["UD39"].Rows[0]["Character05"] = "KIA1878";
+                    //ds.Tables["UD39"].Rows[0]["Date01"] = "2017-03-17";
+
+                    BObject.Update(ds);
+            }
+        }
+
+        public void updateUD39()
+        {
+            bool res = true;
+            bool existe = true;
+            string appServerUrl = string.Empty;
+
+            EnvironmentInformation.ConfigurationFileName = fileSys;
+            appServerUrl = AppSettingsHandler.AppServerUrl;
+            CustomBinding wcfBinding = new CustomBinding();
+            wcfBinding = NetTcp.UsernameWindowsChannel();
+            Uri CustSvcUri = new Uri(string.Format("{0}/Ice/BO/{1}.svc", appServerUrl, "UD39"));
+            using (UD39Impl BObject = new UD39Impl(wcfBinding, CustSvcUri))
+            {
+                BObject.ClientCredentials.UserName.UserName = cred.userName;
+                BObject.ClientCredentials.UserName.Password = cred.password;
+                UD39DataSet dset = new UD39DataSet();
+
+                try
+                {
+                    dset = BObject.GetByID("", "", "", "", "");
+                    
+                }
+                catch (Exception ex)
+                {
+                    existe = false;
+                }
+                if (!existe)
+                {
+                    BObject.GetaNewUD39(dset);
+
+                    dset.Tables["UD39"].Rows[0]["Company"] = getcompany;
+                    dset.Tables["UD39"].Rows[0]["key1"] = "test2";
+                    dset.Tables["UD39"].Rows[0]["key2"] = "";
+                    dset.Tables["UD39"].Rows[0]["key3"] = "";
+                    dset.Tables["UD39"].Rows[0]["key4"] = "";
+                    dset.Tables["UD39"].Rows[0]["key5"] = "";
+                }
+
+                dset.Tables["UD39"].Rows[0]["character05"] = "2017-03-17 04:26:30";
+
+                BObject.Update(dset);
+            }
+        }
 
     }
 }

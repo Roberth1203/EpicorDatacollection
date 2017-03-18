@@ -20,6 +20,21 @@ namespace Utilities
         string connectionString = "Data Source=192.168.1.18;Initial Catalog=ERP10DB;User Id=sa;Password=Epicor123;";
         public static object missVal = System.Reflection.Missing.Value;
 
+        public void testSQLconnection()
+        {
+            try
+            {
+                SqlConnection conexion = new SqlConnection();
+                conexion.ConnectionString = connectionString;
+                conexion.Open();
+                MessageBox.Show("Conexión Establecida","SQL Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception found... \n" + ex.Message, "SQL Exception", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         public static SqlConnection connectToSQL()
         {
             try
@@ -75,6 +90,30 @@ namespace Utilities
                 MessageBox.Show("Exception found " + e.Message, "Utilities SQLException", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             return dt;
+        }
+
+        public DataTable SQLGetData(string query, string proyecto)
+        {
+            DataTable temp = new DataTable();
+
+            try
+            {
+                SqlConnection SQLconn = new SqlConnection(connectionString);
+                SqlCommand cmd = SQLconn.CreateCommand();
+                SQLconn.Open();
+                string buildQuery = query + proyecto + "%';";
+
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand(buildQuery, SQLconn);
+                adapter.Fill(temp);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception found...\n " + ex.Message, "SQL Exception", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            return temp;
         }
 
         public void SQLstatement(String instruction, SqlConnection conn = null, string connectionValues = null) //SQL insert, update or delete

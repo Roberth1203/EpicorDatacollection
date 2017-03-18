@@ -53,3 +53,9 @@ C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection
 C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\bin\Debug\Utilities.dll
 C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\bin\Debug\Utilities.pdb
 C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\bin\Debug\MySql.Data.dll
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\bin\Debug\Ice.Adapters.UD39.dll
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\bin\Debug\Ice.Contracts.BO.UD39.dll
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\bin\Debug\DevComponents.DotNetBar.SuperGrid.dll
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\bin\Debug\DevComponents.Instrumentation.dll
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\bin\Debug\DevComponents.DotNetBar.SuperGrid.xml
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\bin\Debug\DevComponents.Instrumentation.xml

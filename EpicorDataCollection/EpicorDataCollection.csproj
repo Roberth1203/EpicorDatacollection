@@ -51,15 +51,23 @@
     <ApplicationIcon>CAOR.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
     <Reference Include="DevComponents.DotNetBar2, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.Instrumentation, Version=12.5.0.2, Culture=neutral, PublicKeyToken=bc4a9d761ea44ef0" />
     <Reference Include="Erp.Common.ContractInterfaces">
       <HintPath>..\..\..\..\..\..\..\Epicor\ERP10.0ClientTest\Client\Erp.Common.ContractInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Ice.Adapters.UD01">
       <HintPath>..\..\..\..\..\..\..\Epicor\ERP10.0ClientTest\Client\Ice.Adapters.UD01.dll</HintPath>
     </Reference>
+    <Reference Include="Ice.Adapters.UD39">
+      <HintPath>..\..\..\..\..\..\..\Epicor\ERP10.0ClientTest\Client\Ice.Adapters.UD39.dll</HintPath>
+    </Reference>
     <Reference Include="Ice.Contracts.BO.UD01">
       <HintPath>..\..\..\..\..\..\..\Epicor\ERP10.0ClientTest\Client\Ice.Contracts.BO.UD01.dll</HintPath>
+    </Reference>
+    <Reference Include="Ice.Contracts.BO.UD39">
+      <HintPath>..\..\..\..\..\..\..\Epicor\ERP10.0ClientTest\Client\Ice.Contracts.BO.UD39.dll</HintPath>
     </Reference>
     <Reference Include="Ice.Contracts.Lib.SessionMod">
       <HintPath>..\..\..\..\..\..\..\Epicor\ERP10.0ClientTest\Client\Ice.Contracts.Lib.SessionMod.dll</HintPath>
