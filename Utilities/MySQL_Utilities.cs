@@ -101,5 +101,45 @@ namespace Utilities
 
             return temp;
         }
+
+        public void MySQLstatement(String proyecto,string concepto) //SQL insert, update or delete
+        {
+            if(concepto.Equals("correcto"))
+            {
+                string sentencia = ConfigurationManager.AppSettings["updProjects"].ToString() + proyecto + "%'; ";
+                try
+                {
+                    MySqlConnection MySQLconn = new MySqlConnection(sql);
+                    MySqlCommand cmd = MySQLconn.CreateCommand();
+
+                    MySQLconn.Open();
+
+                    MySqlCommand comando = new MySqlCommand(sentencia, MySQLconn);
+                    comando.ExecuteNonQuery();
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("Exception found " + error.Message, "Utilities SQLException", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else if (concepto.Equals("error"))
+            {
+                string sentencia = ConfigurationManager.AppSettings["updErrorProjects"].ToString() + proyecto + "%'; ";
+                try
+                {
+                    MySqlConnection MySQLconn = new MySqlConnection(sql);
+                    MySqlCommand cmd = MySQLconn.CreateCommand();
+
+                    MySQLconn.Open();
+
+                    MySqlCommand comando = new MySqlCommand(sentencia, MySQLconn);
+                    comando.ExecuteNonQuery();
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("Exception found " + error.Message, "Utilities SQLException", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
     }
 }

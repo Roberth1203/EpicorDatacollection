@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="fileIO.cs" />
     <Compile Include="MySQL_Utilities.cs" />
     <Compile Include="utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

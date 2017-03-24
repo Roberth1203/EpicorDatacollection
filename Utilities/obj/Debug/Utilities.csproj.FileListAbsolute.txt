@@ -4,3 +4,4 @@ C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection
 C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\Utilities\obj\Debug\Utilities.dll
 C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\Utilities\obj\Debug\Utilities.pdb
 C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\Utilities\bin\Debug\mysql.data.dll
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\Utilities\bin\Debug\mysql.data.xml

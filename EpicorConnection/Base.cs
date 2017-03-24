@@ -189,7 +189,7 @@ namespace EpicorConnection
             }
         }
 
-        public void updateUD39(string k1, string k2, string k3, string k4, string k5,string fechaInicio,string fechaPreparacion, string fechaSurcado, string fechaEncamado)
+        public void updateUD39(string k1, string k2, string k3, string k4, string k5,string fechaEstacas)
         {
             bool res = true;
             bool existe = true;
@@ -227,10 +227,8 @@ namespace EpicorConnection
                     dset.Tables["UD39"].Rows[0]["key5"] = k5;
                 }
 
-                dset.Tables["UD39"].Rows[0]["Date04"] = fechaInicio;
-                dset.Tables["UD39"].Rows[0]["Date05"] = fechaPreparacion;
-                dset.Tables["UD39"].Rows[0]["Date06"] = fechaSurcado;
-                dset.Tables["UD39"].Rows[0]["Date07"] = fechaEncamado;
+                dset.Tables["UD39"].Rows[0]["Date04"] = fechaEstacas; //Actualización del grupo de parte estacas
+
 
                 BObject.Update(dset);
             }
