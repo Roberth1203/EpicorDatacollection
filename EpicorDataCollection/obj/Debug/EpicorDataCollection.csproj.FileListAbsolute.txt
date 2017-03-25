@@ -60,3 +60,7 @@ C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection
 C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\bin\Debug\DevComponents.DotNetBar.SuperGrid.xml
 C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\bin\Debug\DevComponents.Instrumentation.xml
 C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\bin\Debug\MySql.Data.xml
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\bin\Debug\EpicorDataCollection.exe.manifest
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\bin\Debug\EpicorDataCollection.application
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\obj\Debug\EpicorDataCollection.exe.manifest
+C:\Users\analista_ifc\documents\visual studio 2015\Projects\EpicorDataCollection\EpicorDataCollection\obj\Debug\EpicorDataCollection.application

@@ -23,13 +23,24 @@ namespace EpicorDataCollection
         fileIO fileStream;
         protected string obtUser;
         protected string obtPass;
+        protected int counter = 0;
         public string dataValues = ConfigurationManager.AppSettings["connectionEpicor"].ToString();
-
+        private string server = ConfigurationManager.AppSettings["ConnectionString"].ToString().Substring(12,12);
+        
+        
         public pantallaPrincipal()
         {
             InitializeComponent();
             fileStream = new fileIO();
             fileStream.createFolder();
+
+            counter = 0;
+            timer1.Interval = 600;
+            timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+
+            lblServerOrigen.Text = "INTRTISERVER";
+            lblServerDestino.Text = server;
         }
 
         private void pantallaPrincipal_FormClosed(object sender, FormClosedEventArgs e)
@@ -39,13 +50,12 @@ namespace EpicorDataCollection
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            Base obj = new Base("rarroyo", "vorkelball", "TT");
-            
-            //obj.updateUD39();
         }
 
         private void btnSQL_Click(object sender, EventArgs e)
-        {
+        { }
+
+        private void SincronizarProyectos() {
             //int indice = 0;
             mysql = new MySQL_Utilities();
             DataTable dt = new DataTable();
@@ -75,7 +85,7 @@ namespace EpicorDataCollection
                     indice++;
                 }
 
-                writeLogFooter(ConfigurationManager.AppSettings["filePath"].ToString());
+                //writeLogFooter(ConfigurationManager.AppSettings["filePath"].ToString());
             }
 
             Application.Exit();
@@ -83,11 +93,6 @@ namespace EpicorDataCollection
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            Base obj = new Base("rarroyo", "vorkelball", "TT");
-            //obj.insertUD01("T44516Z");
-            obj.InsertUD39();
-            MessageBox.Show("Tarea Completada");
-            
         }
 
         //Recorrido del datagridview
@@ -115,15 +120,17 @@ namespace EpicorDataCollection
                 
                 if (dgvEpicor.RowCount < 1)
                 {
-                    MessageBox.Show("No hay ninguna coincidencia con el proyecto: " + idProyecto,"Información",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    //MessageBox.Show("No hay ninguna coincidencia con el proyecto: " + idProyecto,"Información",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     writeLog(idProyecto,ConfigurationManager.AppSettings["filePath"].ToString());
+                    listaNoEncontrados.Items.Add(idProyecto);
                     mysql.MySQLstatement(idProyecto, "error");
                 }
                 else
                 {
                     foreach (DataGridViewRow row in dgvEpicor.Rows)
                     {
-                        if ((dgvEpicor.Rows[index].Cells[6].Value.ToString() == "Estaca") && (dgvEpicor.Rows[index].Cells[3].Value.ToString() == "1"))
+                        // Se valida que el grupo de parte sea estaca o vacío y solamente cuente con parcialidad 1
+                        if ((dgvEpicor.Rows[index].Cells[6].Value.ToString() == "Estaca") && (dgvEpicor.Rows[index].Cells[3].Value.ToString() == "1") || (dgvEpicor.Rows[index].Cells[6].Value.ToString() == "") && (dgvEpicor.Rows[index].Cells[3].Value.ToString() == "1"))
                         {
                             Base obj = new Base("rarroyo", "vorkelball", "TT");
                             obj.updateUD39(dgvEpicor.Rows[index].Cells[1].Value.ToString(), dgvEpicor.Rows[index].Cells[2].Value.ToString(), dgvEpicor.Rows[index].Cells[3].Value.ToString(), dgvEpicor.Rows[index].Cells[4].Value.ToString(), dgvEpicor.Rows[index].Cells[5].Value.ToString(), fechaEstacas);
@@ -149,14 +156,22 @@ namespace EpicorDataCollection
 
             }
         }
-        private void writeLogFooter(string ruta)
+
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            string path = ruta;
-            using (StreamWriter sw = File.AppendText(path))
+            if (counter >= 10)
             {
-                sw.WriteLine("===============================================================================================");
-                sw.WriteLine("Se terminó la ejecución de la aplicación ...");
-                sw.WriteLine("===============================================================================================");
+                // Exit loop code.
+                timer1.Enabled = false;
+                counter = 0;
+
+                SincronizarProyectos();
+            }
+            else
+            {
+                // Run your procedure here.
+                // Increment counter.
+                counter = counter + 1;
             }
         }
     }
