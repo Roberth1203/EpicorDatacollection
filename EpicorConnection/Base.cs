@@ -36,7 +36,7 @@ namespace EpicorConnection
         {
             cred = new Credenciales();
             getcompany = company;
-            fileSys = "C:\\Epicor\\ERP10.0ClientTest\\Client\\config\\Epicor10.sysconfig";
+            fileSys = "C:\\Epicor\\ERP10.0ClentTest\\Client\\config\\Epicor10.sysconfig";
             
             cred.userName = user;
             cred.password = pass;
@@ -227,9 +227,14 @@ namespace EpicorConnection
                     dset.Tables["UD39"].Rows[0]["key5"] = k5;
                 }
 
-                dset.Tables["UD39"].Rows[0]["Date04"] = fechaEstacas; //Actualización del grupo de parte estacas
-
-
+                if(fechaEstacas.Equals("0000-00-00 00:00"))
+                {
+                    dset.Tables["UD39"].Rows[0]["Date02"] = DBNull.Value; // Si la fecha es cero dejar null
+                }
+                else
+                {
+                    dset.Tables["UD39"].Rows[0]["Date02"] = fechaEstacas; //Actualización del grupo de parte estacas
+                }
                 BObject.Update(dset);
             }
         }

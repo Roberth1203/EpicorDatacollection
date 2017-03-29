@@ -25,9 +25,9 @@ namespace EpicorDataCollection
         protected string obtPass;
         protected int counter = 0;
         public string dataValues = ConfigurationManager.AppSettings["connectionEpicor"].ToString();
-        private string server = ConfigurationManager.AppSettings["ConnectionString"].ToString().Substring(12,12);
-        
-        
+        private string server = ConfigurationManager.AppSettings["ConnectionString"].ToString().Substring(12, 12);
+
+
         public pantallaPrincipal()
         {
             InitializeComponent();
@@ -66,7 +66,7 @@ namespace EpicorDataCollection
             int indice = 0;
 
             // Validación si no se encuentran registros
-            if(dataGridView1.RowCount < 1)
+            if (dataGridView1.RowCount < 1)
             {
                 using (StreamWriter sw = File.AppendText(ConfigurationManager.AppSettings["filePath"].ToString()))
                 {
@@ -78,11 +78,24 @@ namespace EpicorDataCollection
             {
                 foreach (DataGridViewRow fila in dataGridView1.Rows)
                 {
-                    //Se ejecuta el proceso para actualizar la fecha de entrega
-                    getRecordsPerProject(dataGridView1.Rows[indice].Cells[0].Value.ToString(), dataGridView1.Rows[indice].Cells[1].Value.ToString());
+                    string cleanDate = dataGridView1.Rows[indice].Cells[1].Value.ToString();
+                    if (cleanDate.Equals("0000-00-00 00:00")) // Revisar si la fecha es cero
+                    {
+                        getRecordsPerProject(dataGridView1.Rows[indice].Cells[0].Value.ToString(), cleanDate);
 
-                    dataGridView1.Rows[indice].DefaultCellStyle.BackColor = Color.LightGreen;
-                    indice++;
+                        dataGridView1.Rows[indice].DefaultCellStyle.BackColor = Color.LightGreen;
+                        indice++;
+                    }
+                    else
+                    {
+                        //Se ejecuta el proceso para actualizar la fecha de entrega
+                        getRecordsPerProject(dataGridView1.Rows[indice].Cells[0].Value.ToString(), dataGridView1.Rows[indice].Cells[1].Value.ToString());
+
+                        dataGridView1.Rows[indice].DefaultCellStyle.BackColor = Color.LightGreen;
+                        indice++;
+                    }
+
+                    
                 }
 
                 //writeLogFooter(ConfigurationManager.AppSettings["filePath"].ToString());
@@ -99,7 +112,7 @@ namespace EpicorDataCollection
         private void getDataGridCells()
         {
             foreach (DataGridViewRow fila in dataGridView1.Rows)
-                MessageBox.Show("Id del Proyecto: " + fila.Cells[0].Value,"MySQL Information",MessageBoxButtons.OK);
+                MessageBox.Show("Id del Proyecto: " + fila.Cells[0].Value, "MySQL Information", MessageBoxButtons.OK);
 
             MessageBox.Show("Fila1 \n IdProyecto: " + dataGridView1.Rows[1].Cells[0].Value + " Fecha: " + dataGridView1.Rows[1].Cells[1].Value);
         }
@@ -117,11 +130,11 @@ namespace EpicorDataCollection
             {
                 dtEpicor = sql.SQLGetData(consulta, project);
                 dgvEpicor.DataSource = dtEpicor;
-                
+
                 if (dgvEpicor.RowCount < 1)
                 {
-                    //MessageBox.Show("No hay ninguna coincidencia con el proyecto: " + idProyecto,"Información",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                    writeLog(idProyecto,ConfigurationManager.AppSettings["filePath"].ToString());
+                    // El proyecto no existe en Epicor
+                    writeLog(idProyecto, ConfigurationManager.AppSettings["filePath"].ToString());
                     listaNoEncontrados.Items.Add(idProyecto);
                     mysql.MySQLstatement(idProyecto, "error");
                 }
@@ -138,21 +151,32 @@ namespace EpicorDataCollection
                         }
                         index++;
                     }
-                    mysql.MySQLstatement(idProyecto,"correcto"); //Cambio el status del proyecto a sincronizado
+                    WriteCorrect(idProyecto, ConfigurationManager.AppSettings["filePath"].ToString());
+                    mysql.MySQLstatement(idProyecto, "correcto"); //Cambio el status del proyecto a sincronizado
                 }
             }
-            catch(ArgumentOutOfRangeException exx)
-            { 
-                MessageBox.Show("Se capturó la siguiente excepción \n" + exx.Message + "\n Número de filas del grid: " + dgvEpicor.RowCount, "Exception Found: ArgumentOutOfRangeException" ,MessageBoxButtons.OK,MessageBoxIcon.Warning);
+            catch (ArgumentOutOfRangeException exx)
+            {
+                MessageBox.Show("Se capturó la siguiente excepción \n" + exx.Message + "\n Número de filas del grid: " + dgvEpicor.RowCount, "Exception Found: ArgumentOutOfRangeException", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private void writeLog(string proyectoActual,string rutaArchivo)
+        private void writeLog(string proyectoActual, string rutaArchivo)
         {
             string path = rutaArchivo;
             using (StreamWriter sw = File.AppendText(path))
             {
                 sw.WriteLine("El proyecto " + proyectoActual + " no se encontró en Epicor (Marcado con status 3 al sincronizar).");
+
+            }
+        }
+
+        private void WriteCorrect(string proyectoActual, string rutaArchivo)
+        {
+            string path = rutaArchivo;
+            using (StreamWriter sw = File.AppendText(path))
+            {
+                sw.WriteLine("El proyecto " + proyectoActual + " ha sido actualizado exitosamente (Se ha marcado con 1 en la sincronización).");
 
             }
         }

@@ -115,26 +115,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EpicorConnection.dll" size="10240">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EpicorConnection.dll" size="10752">
       <assemblyIdentity name="EpicorConnection" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wYmBqTIcKgQJVg9D2yM3k+hfHCTbNCnKubl6SOKYuTE=</dsig:DigestValue>
+        <dsig:DigestValue>hnmp2zHKHEXEFAl2MKa2fnaZQA7Y18/rlz2eO9qMU4c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EpicorDataCollection.exe" size="761344">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EpicorDataCollection.exe" size="761856">
       <assemblyIdentity name="EpicorDataCollection" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>L2ax+fLQFt8ZUZoLPg5lfr0UNAwJtPTEBQ3DFThvCpk=</dsig:DigestValue>
+        <dsig:DigestValue>VeneE/bmKp3KivyvztoWF1O1y792JhCRkAlto442v2E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -494,7 +494,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>iRJiav9HZwHYxA/y3C/0nFiu70NYfQWvfw5vFaXm298=</dsig:DigestValue>
+        <dsig:DigestValue>iSo31BYobRkllZ4Siu4biEDhNJd8EyqPaovKCjlLOn8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -507,13 +507,13 @@
       <dsig:DigestValue>FyKQ+AIuhe8bgJb07/NkGStrTGnwuYEiDQBBrHHuV4E=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="EpicorDataCollection.exe.config" size="2822">
+  <file name="EpicorDataCollection.exe.config" size="3282">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>i1+Tprr171oyti7UcQkSHkfk2vPHvMgM+cizRNIhhus=</dsig:DigestValue>
+      <dsig:DigestValue>nJ2hYQZS31YWD9Z2CuBEm30/jihMdzs+HVNUEMGOXZU=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
