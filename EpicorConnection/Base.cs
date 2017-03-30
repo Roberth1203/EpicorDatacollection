@@ -36,8 +36,8 @@ namespace EpicorConnection
         {
             cred = new Credenciales();
             getcompany = company;
-            fileSys = "C:\\Epicor\\ERP10.0ClentTest\\Client\\config\\Epicor10.sysconfig";
-            
+            //fileSys = "C:\\Epicor\\ERP10.0ClientTest\\Client\\config\\Epicor10.sysconfig";
+            fileSys = ConfigurationManager.AppSettings["archivoConfig"].ToString();
             cred.userName = user;
             cred.password = pass;
 
@@ -189,7 +189,7 @@ namespace EpicorConnection
             }
         }
 
-        public void updateUD39(string k1, string k2, string k3, string k4, string k5,string fechaEstacas)
+        public void updateUD39(string k1, string k2, string k3, string k4, string k5,string fechaMaster)
         {
             bool res = true;
             bool existe = true;
@@ -227,13 +227,14 @@ namespace EpicorConnection
                     dset.Tables["UD39"].Rows[0]["key5"] = k5;
                 }
 
-                if(fechaEstacas.Equals("0000-00-00 00:00"))
+                // Definir fecha estacas
+                if((fechaMaster.Equals("0000-00-00 00:00")) || (fechaMaster.Equals("1969-12-31 00:00")))
                 {
                     dset.Tables["UD39"].Rows[0]["Date02"] = DBNull.Value; // Si la fecha es cero dejar null
                 }
                 else
                 {
-                    dset.Tables["UD39"].Rows[0]["Date02"] = fechaEstacas; //Actualización del grupo de parte estacas
+                    dset.Tables["UD39"].Rows[0]["Date02"] = fechaMaster; //Se actualiza la fecha segun el grupo de parte
                 }
                 BObject.Update(dset);
             }

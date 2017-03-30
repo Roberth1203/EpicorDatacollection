@@ -76,31 +76,20 @@ namespace EpicorDataCollection
             }
             else
             {
-                foreach (DataGridViewRow fila in dataGridView1.Rows)
+                foreach (DataGridViewRow fila in dataGridView1.Rows) // Por cada fila en el grid del master se buscaran las coincidencias en el grid de proyectos Epicor
                 {
                     string cleanDate = dataGridView1.Rows[indice].Cells[1].Value.ToString();
-                    if (cleanDate.Equals("0000-00-00 00:00")) // Revisar si la fecha es cero
-                    {
-                        getRecordsPerProject(dataGridView1.Rows[indice].Cells[0].Value.ToString(), cleanDate);
-
-                        dataGridView1.Rows[indice].DefaultCellStyle.BackColor = Color.LightGreen;
-                        indice++;
-                    }
-                    else
-                    {
-                        //Se ejecuta el proceso para actualizar la fecha de entrega
-                        getRecordsPerProject(dataGridView1.Rows[indice].Cells[0].Value.ToString(), dataGridView1.Rows[indice].Cells[1].Value.ToString());
-
-                        dataGridView1.Rows[indice].DefaultCellStyle.BackColor = Color.LightGreen;
-                        indice++;
-                    }
-
+                    string cleanArco = dataGridView1.Rows[indice].Cells[2].Value.ToString();
+                    string cleanAccesorio = dataGridView1.Rows[indice].Cells[3].Value.ToString();
+                    string cleanPlastico = dataGridView1.Rows[indice].Cells[4].Value.ToString();
                     
+                    getRecordsPerProject(dataGridView1.Rows[indice].Cells[0].Value.ToString(), cleanDate, cleanArco, cleanAccesorio, cleanPlastico);
+
+                    dataGridView1.Rows[indice].DefaultCellStyle.BackColor = Color.LightGreen;
+                    indice++;   
                 }
-
-                //writeLogFooter(ConfigurationManager.AppSettings["filePath"].ToString());
             }
-
+            WriteEndOfProccess(ConfigurationManager.AppSettings["filePath"].ToString());
             Application.Exit();
         }
 
@@ -117,7 +106,7 @@ namespace EpicorDataCollection
             MessageBox.Show("Fila1 \n IdProyecto: " + dataGridView1.Rows[1].Cells[0].Value + " Fecha: " + dataGridView1.Rows[1].Cells[1].Value);
         }
 
-        private void getRecordsPerProject(string idProyecto, string fechaEstacas)
+        private void getRecordsPerProject(string idProyecto, string cleanDate, string cleanArco, string cleanAccesorio, string cleanPlastico)
         {
             sql = new utilities();
             DataTable dtEpicor = new DataTable();
@@ -128,25 +117,46 @@ namespace EpicorDataCollection
 
             try
             {
+                // Consulto los proyectos en la UD39 con referencia al id de Proyecto
                 dtEpicor = sql.SQLGetData(consulta, project);
                 dgvEpicor.DataSource = dtEpicor;
 
-                if (dgvEpicor.RowCount < 1)
+                if (dgvEpicor.RowCount < 1) // Valido si el grid no contiene filas
                 {
-                    // El proyecto no existe en Epicor
+                    // Si el proyecto no existe en Epicor escribo en el log y cambio el status a 3(No encontrado)
                     writeLog(idProyecto, ConfigurationManager.AppSettings["filePath"].ToString());
                     listaNoEncontrados.Items.Add(idProyecto);
                     mysql.MySQLstatement(idProyecto, "error");
                 }
                 else
                 {
+                    // En caso de recuperar registros se revisa el grupo de parte para impactar las fechas en Epicor
                     foreach (DataGridViewRow row in dgvEpicor.Rows)
                     {
-                        // Se valida que el grupo de parte sea estaca o vacío y solamente cuente con parcialidad 1
-                        if ((dgvEpicor.Rows[index].Cells[6].Value.ToString() == "Estaca") && (dgvEpicor.Rows[index].Cells[3].Value.ToString() == "1") || (dgvEpicor.Rows[index].Cells[6].Value.ToString() == "") && (dgvEpicor.Rows[index].Cells[3].Value.ToString() == "1"))
+                        // Se realiza la validación para impactar una fecha de acuerdo al grupo de parte al que pertenece
+                        // si el grupo de parte es vacío será contemplado como Estaca
+                        if (((dgvEpicor.Rows[index].Cells[6].Value.ToString() == "Estaca") && (dgvEpicor.Rows[index].Cells[3].Value.ToString() == "1")) || ((dgvEpicor.Rows[index].Cells[6].Value.ToString() == "") && (dgvEpicor.Rows[index].Cells[3].Value.ToString() == "1")))
                         {
                             Base obj = new Base("rarroyo", "vorkelball", "TT");
-                            obj.updateUD39(dgvEpicor.Rows[index].Cells[1].Value.ToString(), dgvEpicor.Rows[index].Cells[2].Value.ToString(), dgvEpicor.Rows[index].Cells[3].Value.ToString(), dgvEpicor.Rows[index].Cells[4].Value.ToString(), dgvEpicor.Rows[index].Cells[5].Value.ToString(), fechaEstacas);
+                            obj.updateUD39(dgvEpicor.Rows[index].Cells[1].Value.ToString(), dgvEpicor.Rows[index].Cells[2].Value.ToString(), dgvEpicor.Rows[index].Cells[3].Value.ToString(), dgvEpicor.Rows[index].Cells[4].Value.ToString(), dgvEpicor.Rows[index].Cells[5].Value.ToString(),cleanDate);
+                            dgvEpicor.Rows[index].DefaultCellStyle.BackColor = Color.LightGreen;
+                        }
+                        else if (((dgvEpicor.Rows[index].Cells[6].Value.ToString() == "Arco") && (dgvEpicor.Rows[index].Cells[3].Value.ToString() == "1")))
+                        {
+                            Base obj = new Base("rarroyo", "vorkelball", "TT");
+                            obj.updateUD39(dgvEpicor.Rows[index].Cells[1].Value.ToString(), dgvEpicor.Rows[index].Cells[2].Value.ToString(), dgvEpicor.Rows[index].Cells[3].Value.ToString(), dgvEpicor.Rows[index].Cells[4].Value.ToString(), dgvEpicor.Rows[index].Cells[5].Value.ToString(), cleanArco);
+                            dgvEpicor.Rows[index].DefaultCellStyle.BackColor = Color.LightGreen;
+                        }
+                        else if (((dgvEpicor.Rows[index].Cells[6].Value.ToString() == "Accesorios") && (dgvEpicor.Rows[index].Cells[3].Value.ToString() == "1")))
+                        {
+                            Base obj = new Base("rarroyo", "vorkelball", "TT");
+                            obj.updateUD39(dgvEpicor.Rows[index].Cells[1].Value.ToString(), dgvEpicor.Rows[index].Cells[2].Value.ToString(), dgvEpicor.Rows[index].Cells[3].Value.ToString(), dgvEpicor.Rows[index].Cells[4].Value.ToString(), dgvEpicor.Rows[index].Cells[5].Value.ToString(), cleanAccesorio);
+                            dgvEpicor.Rows[index].DefaultCellStyle.BackColor = Color.LightGreen;
+                        }
+                        else if (((dgvEpicor.Rows[index].Cells[6].Value.ToString() == "Plastico") && (dgvEpicor.Rows[index].Cells[3].Value.ToString() == "1")   ))
+                        {
+                            Base obj = new Base("rarroyo", "vorkelball", "TT");
+                            obj.updateUD39(dgvEpicor.Rows[index].Cells[1].Value.ToString(), dgvEpicor.Rows[index].Cells[2].Value.ToString(), dgvEpicor.Rows[index].Cells[3].Value.ToString(), dgvEpicor.Rows[index].Cells[4].Value.ToString(), dgvEpicor.Rows[index].Cells[5].Value.ToString(), cleanPlastico);
                             dgvEpicor.Rows[index].DefaultCellStyle.BackColor = Color.LightGreen;
                         }
                         index++;
@@ -181,6 +191,16 @@ namespace EpicorDataCollection
             }
         }
 
+        private void WriteEndOfProccess(string rutaArchivo)
+        {
+            string path = rutaArchivo;
+            using (StreamWriter sw = File.AppendText(path))
+            {
+                sw.WriteLine("Se ha terminado la sincronización ...");
+            }
+
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (counter >= 10)
@@ -193,8 +213,7 @@ namespace EpicorDataCollection
             }
             else
             {
-                // Run your procedure here.
-                // Increment counter.
+                // Incremento contador
                 counter = counter + 1;
             }
         }

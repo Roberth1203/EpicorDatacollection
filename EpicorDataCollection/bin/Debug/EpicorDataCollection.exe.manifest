@@ -122,19 +122,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>hnmp2zHKHEXEFAl2MKa2fnaZQA7Y18/rlz2eO9qMU4c=</dsig:DigestValue>
+        <dsig:DigestValue>7uSu2EcWSJf6V5Q6iArKDvj0v9amgA1wYKO05IAdLx4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EpicorDataCollection.exe" size="761856">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EpicorDataCollection.exe" size="763392">
       <assemblyIdentity name="EpicorDataCollection" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>VeneE/bmKp3KivyvztoWF1O1y792JhCRkAlto442v2E=</dsig:DigestValue>
+        <dsig:DigestValue>52be6LIKX/Vt1M3Z81CFOS1AyDsAMlxvzWcB6NWCYzY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -507,13 +507,13 @@
       <dsig:DigestValue>FyKQ+AIuhe8bgJb07/NkGStrTGnwuYEiDQBBrHHuV4E=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="EpicorDataCollection.exe.config" size="3282">
+  <file name="EpicorDataCollection.exe.config" size="3322">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>nJ2hYQZS31YWD9Z2CuBEm30/jihMdzs+HVNUEMGOXZU=</dsig:DigestValue>
+      <dsig:DigestValue>EDi1O81TgXqfkWXmu1VE14FPSPmkzx0OCLtizg9gOuE=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
